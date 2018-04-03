@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/vue-resource.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>vue-resource！</h1>
+<hr>
+<div id="app">
+    {{message}}
+</div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"Hello Vue!"
+        },
+        beforeMount:function(){
+            console.log("3 - beforeMount 挂载之前！");
+
+            var formData = new FormData();
+            formData.append('a',1);
+
+            //POST
+            // GET /someUrl
+            this.$http.post('1.php',formData).then((response) => {
+
+                console.log(response.data);
+                this.message = response.data;
+
+                }, (response) => {
+                        // error callback
+                        console.log('error');
+                    });
+
+//            // GET /someUrl
+//            this.$http.get('1.txt').then((response) => {
+//
+//                console.log(response.data);
+//                this.message = response.data;
+//
+//                }, (response) => {
+//                    // error callback
+//                    console.log('error');
+//                    });
+        },
+    });
+</script>
+</body>
+</html>

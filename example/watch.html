@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>watch！</h1>
+<hr>
+<div id="app">
+    <p>苹果</p>
+    <p>购买数量:{{n}}</p>
+    <p><button @click="jia">+</button>  <button @click="jian">-</button></p>
+</div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            n:0,
+        },
+        methods:{
+            jia:function () {
+                this.n++
+            },
+            jian:function () {
+//                if(this.n>=1){
+//                    this.n--
+//                }
+                this.n--
+            }
+        },
+//            第一种方式:
+       watch:{
+           n:function (newVal,oldVal) {
+               console.log(newVal)
+               console.log(oldVal)
+               if(newVal<1){
+                   this.n = 1
+               }
+           }
+       },
+//            End第一种方式:
+    });
+
+//    第二种方式:
+    //外置实例属性,促销
+    // vm.$watch('n',function (newVal, oldVal) {
+    //     if(newVal<1){
+    //         vm.n = 1
+    //     }
+    // },{deep:true,immediate:true})//immediate:如果数值改变了,我立刻回调这个数组
+//    End第二种方式:
+</script>
+</body>
+</html>

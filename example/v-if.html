@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>v-if判断是否加载！</h1>
+<div id="app">
+    <div v-if="ok">v-if</div>
+    <div v-else-if="ok2">v-else-if</div>
+    <div v-else>v-else</div>
+</div>
+<script>
+    var aaa = new Vue({
+        el:"#app",
+        data:{
+            ok:false,
+            ok2:true,
+        }
+    });
+</script>
+</body>
+</html>

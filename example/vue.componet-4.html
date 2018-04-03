@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>Vue组件-4(动态模板切换)！</h1>
+<hr>
+<div id="app">
+    <component v-bind:is="who"></component>
+    <p>
+        <button @click="changeP('pA')">pA</button>
+        <button @click="changeP('pB')">pB</button>
+        <button @click="changeP('pC')">pC</button>
+        <button @click="changeP('pD')">pD</button>
+    </p>
+</div>
+<script>
+    pA = {
+        template:`<div>This is pA！--{{a}}</div>`,
+        data:function () {
+            return {
+                a:'AAA'
+            }
+        }
+    }
+
+    pB = {
+        template:`<div>This is pB！</div>`,
+    }
+
+    pC = {
+        template:`<div>This is pC！</div>`,
+    }
+
+    pD = {
+        template:`<div>This is pD！</div>`,
+    }
+
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            who:'pB'
+        },
+        components:{
+            "pA":pA,
+            "pB":pB,
+            "pC":pC,
+            "pD":pD,
+        },
+        methods:{
+            changeP:function(varP){
+                this.who = varP;
+            }
+        }
+    });
+</script>
+</body>
+</html>

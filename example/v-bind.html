@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>v-bind！</h1>
+<hr>
+<div id="app">
+    <img v-bind:src="imageSrc" alt="" :width="width">
+
+    <hr>
+    <div :class="className">1,绑定class</div>
+    <div :class="{classA:classOr}">2,绑定class中的判断</div>
+    <div :class="[classA,classB]">3,绑定class中的数组</div>
+    <div :class="[classOr?classA:classB]">4,绑定class中三元表达式</div>
+    <div :class="[{classA:classOr},classB]">5,绑定class中使用判断组合</div>
+    <hr>
+    <div :style="{color:red,fontSize:fontsize}">6，style绑定！</div>
+    <div :style="fontArray">7，style绑定json数据！</div>
+</div>
+<style>
+    .classA{
+        color:red;
+    }
+    .classB{
+        color:brown;
+        font-size:20px;
+    }
+</style>
+<script>
+    var aaa = new Vue({
+        el:"#app",
+        data:{
+            imageSrc:"https://cn.vuejs.org/images/logo.png",
+            width:'50',
+//            className:'classA',
+            className:'classB',
+            classOr:true,
+            classA:'classA',
+            classB:'classB',
+            red:'red',
+            fontsize:'40px',
+            fontArray:{
+                color:'green',
+                fontSize:'10px',
+            },
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>slot！</h1>
+<p>slot是标签的内容扩展,把组件的内容传播出去</p>
+<hr>
+<div id="app">
+    <goods v-for="aaa in goods">
+        <span slot="name">{{aaa.name}}</span>
+        <span slot="num">{{aaa.num}}</span>
+    </goods>
+</div>
+
+<!--写模板的时候,比如template里面必须还有个根标签p-->
+<template id="demo">
+    <p>
+        名称:<slot name="name"></slot>
+        数量:<slot name="num"></slot>
+    </p>
+</template>
+<script>
+    goods = {
+        template:`#demo`,
+    }
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            goods:[
+                {name:'pen',num:20},
+                {name:'car',num:2},
+            ],
+        },
+        components:{
+            "goods":goods,
+        }
+    });
+</script>
+</body>
+</html>

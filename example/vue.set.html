@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>Vue.set全局操作！</h1>
+<hr>
+<div id="app">
+    <ul>
+        <li v-for="as in goods">{{as.name}}数量为：{{as.num}}</li>
+    </ul>
+    <p>总计：{{count}}件！</p>
+    <p><button @click="qingkong">清空</button></p>
+</div>
+
+<button onclick="add()">+</button>
+<script>
+    function add() {
+//        Vue.set(asdf,'count','4');
+        asdf.goods.push({name:'house',num:'1'})
+        vm.count++;
+    }
+
+    var asdf = {
+        count:3,
+        goods:[
+            {name:'car',num:'1'},
+            {name:'pen',num:'3'},
+        ],
+    };
+    var vm = new Vue({
+        el:"#app",
+        data:asdf,
+        methods:{
+            qingkong:function(){
+                this.count = 0;
+                this.goods = [];
+            },
+        }
+    });
+</script>
+</body>
+</html>

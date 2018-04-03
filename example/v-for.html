@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>v-for！</h1>
+<div id="app">
+    <ul>
+        <li v-for="(bbb,index) in devst">{{index+1}}-->{{bbb.name}}--{{bbb.age}}</li>
+    </ul>
+
+    <ul>
+        <li v-for="aaa in devstudent">{{aaa}}</li>
+    </ul>
+</div>
+<script>
+    var aaa = new Vue({
+        el:"#app",
+        data:{
+            student:[34,345,456,57,89,45,43,89,90],
+            st:[
+                {name:'dkal',age:28},
+                {name:'wos',age:29},
+                {name:'jump',age:24},
+                {name:'diko',age:25},
+                {name:'json',age:23},
+                {name:'hanmei',age:22},
+            ]
+        },
+        computed:{
+            devstudent:function(){
+//                return this.student.sort(sortNumber);
+                return this.student.reverse();
+            },
+            devst:function () {
+                return sortByKey(this.st,'age');
+            }
+        }
+    });
+
+    function sortNumber(a,b){
+        return a - b
+    }
+
+    function sortByKey(array, key) {
+        return array.sort(function(a,b){
+            var x = a[key];var y = b[key];
+            return ((x < y) ? -1:((x > y) ? 1:0));
+        });
+    }
+</script>
+</body>
+</html>

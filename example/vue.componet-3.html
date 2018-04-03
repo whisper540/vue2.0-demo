@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>Vue组件-3(父子组件)！</h1>
+<hr>
+<div id="app">
+    <local here="China"></local>
+    <local v-bind:here="message"></local>
+</div>
+<script>
+    city = {
+        template:`<div>city组件！</div>`,
+    }
+
+    local = {
+        template:`<div>
+                <p>local组件！</p>
+                <city></city>
+                </div>
+                `,
+        components:{
+            "city":city
+        }
+    }
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:'USA'
+        },
+        components:{
+            "local":local
+        }
+    });
+</script>
+</body>
+</html>

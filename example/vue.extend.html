@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>Vue.extend（延伸构造器,挂载只挂载无属性的标签实体）！</h1>
+<hr>
+<div id="header"></div>
+<div id="footer"></div>
+<!--<header></header>-->
+<!--<footer></footer>-->
+<script>
+    var header_aaa = Vue.extend({
+        template:`<p>{{message}}</p>`,
+        data:function(){
+            return {
+                message:'hello I am header!'
+            }
+        },
+    });
+
+    var footer_bbb = Vue.extend({
+        template:`<p>{{message}}</p>`,
+        data:function(){
+            return {
+                message:'hello I am footer!'
+            }
+        },
+    });
+
+    new header_aaa().$mount('#header');
+    new footer_bbb().$mount('#footer');
+//    new header_aaa().$mount('header');
+//    new footer_bbb().$mount('footer');
+
+</script>
+</body>
+</html>

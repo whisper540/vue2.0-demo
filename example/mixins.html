@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>mixins！</h1>
+<p>1,全局的混入(验证和校验),2,对象的混入,3,构造器的执行</p>
+<hr>
+<div id="app">
+    {{message}}
+    <p><button @click="jia">+</button></p>
+</div>
+<script>
+//    全局的混入
+    Vue.mixin({
+        created:function () {
+            console.log("我是全局的混入的created!")
+        },
+    });
+//    End全局的混入
+
+//    局部的混入
+    var aaa = {
+        data:{
+            message:"mixins,data混入的"
+        },
+        created:function () {
+            console.log("对象中的混入的created!")
+//            this.message = "我被混入了!";
+        },
+        methods:{
+            jia:function(){
+                console.log("我被加了--混入的");
+            }
+        }
+    };
+//    End局部的混入
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"构造器,data混入的"
+        },
+        created:function () {
+            console.log("构造器中的created!")
+//            this.message = "created我被混入了!";
+        },
+        methods:{
+        jia:function(){
+            console.log("我被加了--构造器的");
+        }
+    },
+        mixins:[aaa]
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>computed！</h1>
+<p>以数据为基础的情况下，在数据抛到用户端之前，把数据格式化成我们想要的样子。</p>
+<hr>
+<div id="app">
+    <p>原价：￥{{yuanjia}}元</p>
+    <p>折扣：{{zhekou}}折</p>
+    <p>现价：￥{{xianjia}}元</p>
+    <br>
+    <button @click="add">+</button>
+</div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            yuanjia:10,
+            zhekou:0.8,
+        },
+        computed:{
+            xianjia:function () {
+                return this.yuanjia*this.zhekou
+            }
+        },
+        methods:{
+            add:function () {
+                this.yuanjia++
+            }
+        }
+    });
+</script>
+</body>
+</html>

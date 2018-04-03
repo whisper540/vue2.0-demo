@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>Vue.directive自定义指令！</h1>
+<hr>
+<div id="app">
+    <div v-dkal.color.fontSize="color" id="dkal">
+        {{num}}
+    </div>
+
+    <p>
+        <button @click="jia">+</button>
+        <button @click="jian">-</button>
+    </p>
+</div>
+
+<button onclick="xiezai()">卸载</button>
+<script>
+    Vue.directive('dkal',{
+        //生命周期五个
+            bind:function(el,binding,vnode){//当被绑定
+                console.log('1 - bind');
+
+//                var s = JSON.stringify;
+//                el.innerHTML =
+//                    'name: ' + s(binding.name) + "<br>"+
+//                    'value: ' + s(binding.value) + "<br>"+
+//                    'expression: ' + s(binding.expression) + "<br>"+
+//                    'argument: ' + s(binding.arg) + "<br>"+
+//                    'modifiers: ' + s(binding.modifiers) + "<br>"+
+//                    'vnode keys: ' + Object.keys(vnode).join(', ');
+                el.style = 'color:' + binding.value;
+            },
+            inserted:function(){//绑定到节点
+                console.log('2 - inserted');
+            },
+            update:function(el,binding,vnode){//组件更新
+                console.log('3 - update');
+                el.style = "color:green";
+            },
+            componentUpdated:function(){//组件更新完成
+                console.log('4 - componentUpdated');
+            },
+            unbind:function(){//卸载，解绑
+                console.log('5 - unbind');
+            },
+        }
+
+    );
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            num:10,
+            color:'red',
+        },
+        methods:{
+          jia:function () {
+              this.num++;
+          },
+          jian:function () {
+              if(this.num>=1){
+                  this.num--;
+              }
+          },
+        },
+    });
+
+    function xiezai(){
+        vm.$destroy();
+    }
+</script>
+</body>
+</html>

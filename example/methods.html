@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>Methods！</h1>
+<p>@click.native外部引入的组件访问我自己构造器里面的方法！</p>
+<hr>
+<div id="app">
+    {{a}}
+    <br>
+    <button v-on:click="jia(2,$event)">+2</button>  <button @click="jian">-</button>
+    <br>
+    <button v-on:click="a++">+</button>  <button @click="a--">-</button>
+    <br>
+    <p>归零：<button @click="a=0">0</button></p>
+
+    <p>外部组件访问本地构造器里面的方法：
+        <btn @click.native="jia(1,$event)"></btn>
+    </p>
+
+    <p>访问原生事件：
+        <button onclick="jiajia()">++</button>
+    </p>
+
+    <p>
+        <button onclick="vm.jia(1)">外部访问构造器里面的事件</button>
+    </p>
+
+    <!--修饰符-->
+    <a href=""  v-on:click.stop>阻止单事件冒泡</a>
+    <br>
+    <form action="" v-on:submit.prevent="onSubmit">提交事件不在重载页面</form>
+    <br>
+    <div v-on:click.capture="doThis">添加事件侦听器时使用事件捕获模式</div>
+    <br>
+    <div v-on:click.self="doThat">只当事件在该元素本身(而不是子元素)触发时触发回调</div>
+    <br>
+    <a href=""  v-on:click.stop.prevent="doThat">修饰符可以串联</a>
+    <!--End修饰符-->
+</div>
+<script>
+    //访问原生事件
+    function jiajia(){
+        vm.a ++
+    }
+    //End访问原生事件
+
+    //外部组件btn访问本地事件
+    var btn = {
+        template:`<button>外部组件！</button>`,
+    }
+    //End外部组件btn访问本地事件
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            a:0,
+        },
+        methods:{
+            jia:function (num,event) {
+//                console.log(event);//获取MouseEvent
+                if(num!=''){
+                    this.a +=num
+                }else{
+                    this.a++
+                }
+            },
+            jian:function () {
+                if(this.a >=1){
+                    this.a--
+                }
+            }
+        },
+        components:{
+            'btn':btn,
+        }
+    });
+</script>
+</body>
+</html>

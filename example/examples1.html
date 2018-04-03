@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>examples1()！</h1>
+<p>Jquery写在方法里,或者生命周期里面,Jquery主要操作DOM节点,Jquery只能操作mounted和updated这两个生命周期</p>
+<hr>
+<div id="app">
+    {{message}}
+</div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"Hello Vue!!"
+        },
+        mounted:function () {
+            console.log("mounted我被创建了")
+//            $("#app").html("Jquery is here!!")
+        },
+        updated:function () {
+            console.log("updated我被更新了")
+        },
+    });
+
+//    console.log(vm.$el);
+//    console.log(vm);//vm把实例暴露给方法
+</script>
+</body>
+</html>
